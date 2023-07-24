@@ -11,7 +11,7 @@ require (
 	github.com/khulnasoft-labs/fdmax v0.0.5
 	github.com/khulnasoft-labs/gologger v1.1.11
 	github.com/logrusorgru/aurora v2.0.3+incompatible
-	github.com/microcosm-cc/bluemonday v1.0.24
+	github.com/microcosm-cc/bluemonday v1.0.25
 	github.com/miekg/dns v1.1.55
 	github.com/minio/selfupdate v0.6.0
 	github.com/pkg/errors v0.9.1
