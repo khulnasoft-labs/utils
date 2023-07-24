@@ -15,7 +15,7 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"github.com/charmbracelet/glamour"
 	"github.com/minio/selfupdate"
-	"github.com/projectdiscovery/gologger"
+	"github.com/khulnasoft-labs/gologger"
 	errorutil "github.com/khulnasoft-labs/utils/errors"
 )
 

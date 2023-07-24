@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/projectdiscovery/blackrock"
+	"github.com/khulnasoft-labs/blackrock"
 )
 
 func init() {

@@ -4,7 +4,7 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/projectdiscovery/fdmax"
+	"github.com/khulnasoft-labs/fdmax"
 	iputil "github.com/khulnasoft-labs/utils/ip"
 	permissionutil "github.com/khulnasoft-labs/utils/permission"
 	router "github.com/khulnasoft-labs/utils/routing"
