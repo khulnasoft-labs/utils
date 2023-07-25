@@ -103,7 +103,7 @@ func (o *OrderedParams) Encode() string {
 			}
 			buf.WriteString(keyEscaped)
 			value := ParamEncode(v)
-			// donot specify = if parameter has no value (reference: nuclei-templates)
+			// donot specify = if parameter has no value (reference: vulscan-templates)
 			if value != "" {
 				buf.WriteRune('=')
 				buf.WriteString(value)
@@ -155,7 +155,7 @@ func (o *OrderedParams) Decode(raw string) {
 func (o *OrderedParams) Clone() *OrderedParams {
 	clone := NewOrderedParams()
 	o.om.Iterate(func(key string, value []string) bool {
-		// this needs to be a deep copy (from reference in nuclei race condition issue)
+		// this needs to be a deep copy (from reference in vulscan race condition issue)
 		if len(value) != 0 {
 			clone.Add(key, value...)
 		} else {

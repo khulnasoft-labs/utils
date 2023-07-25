@@ -20,7 +20,7 @@ import (
 )
 
 const (
-	Organization        = "projectdiscovery"
+	Organization        = "KhulnaSoft"
 	UpdateCheckEndpoint = "https://api.pdtm.sh/api/v1/tools/%v"
 )
 
@@ -41,7 +41,7 @@ func GetUpdateToolCallback(toolName, version string) func() {
 }
 
 // GetUpdateToolWithRepoCallback returns a callback function that is similar to GetUpdateToolCallback
-// but it takes repoName as an argument (repoName can be either just repoName ex: `nuclei` or full repo Addr ex: `projectdiscovery/nuclei`)
+// but it takes repoName as an argument (repoName can be either just repoName ex: `vulscan` or full repo Addr ex: `KhulnaSoft-Labs/vulscan`)
 func GetUpdateToolFromRepoCallback(toolName, version, repoName string) func() {
 	return func() {
 		if repoName == "" {

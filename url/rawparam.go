@@ -102,7 +102,7 @@ func (p Params) Encode() string {
 			}
 			buf.WriteString(keyEscaped)
 			value := ParamEncode(v)
-			// donot specify = if parameter has no value (reference: nuclei-templates)
+			// donot specify = if parameter has no value (reference: vulscan-templates)
 			if value != "" {
 				buf.WriteRune('=')
 				buf.WriteString(value)
