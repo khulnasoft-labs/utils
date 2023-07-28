@@ -7,7 +7,7 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/google/go-github/v30 v30.1.0
-	github.com/khulnasoft-labs/blackrock v0.0.1
+	github.com/khulnasoft-labs/blackrock v0.0.2
 	github.com/khulnasoft-labs/fdmax v0.0.5
 	github.com/khulnasoft-labs/gologger v1.1.11
 	github.com/logrusorgru/aurora v2.0.3+incompatible
