@@ -18,6 +18,27 @@ func TestSyncLockMap(t *testing.T) {
 		},
 	}
 
+	t.Run("Test NewSyncLockMap with map ", func(t *testing.T) {
+		m := NewSyncLockMap[string, string](WithMap(Map[string, string]{
+			"key1": "value1",
+			"key2": "value2",
+		}))
+
+		if !m.Has("key1") || !m.Has("key2") {
+			t.Error("couldn't init SyncLockMap with NewSyncLockMap")
+		}
+	})
+
+	t.Run("Test NewSyncLockMap without map", func(t *testing.T) {
+		m := NewSyncLockMap[string, string]()
+		_ = m.Set("key1", "value1")
+		_ = m.Set("key2", "value2")
+
+		if !m.Has("key1") || !m.Has("key2") {
+			t.Error("couldn't init SyncLockMap with NewSyncLockMap")
+		}
+	})
+
 	t.Run("Test lock", func(t *testing.T) {
 		m.Lock()
 		if m.ReadOnly.Load() != true {
@@ -39,6 +60,17 @@ func TestSyncLockMap(t *testing.T) {
 		v, ok := m.Map["key3"]
 		if !ok || v != "value3" {
 			t.Error("failed to set item in map")
+		}
+	})
+
+	t.Run("Test delete", func(t *testing.T) {
+		_ = m.Set("key5", "value5")
+		if !m.Has("key5") {
+			t.Error("couldn't set item to delete")
+		}
+		m.Delete("key5")
+		if m.Has("key5") {
+			t.Error("couldn't delete item")
 		}
 	})
 
