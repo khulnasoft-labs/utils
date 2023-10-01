@@ -4,8 +4,8 @@ import (
 	"net"
 	"testing"
 
-	"github.com/khulnasoft-labs/utils/consts"
-	osutils "github.com/khulnasoft-labs/utils/os"
+	"github.com/khulnasoft-lab/utils/consts"
+	osutils "github.com/khulnasoft-lab/utils/os"
 	"github.com/stretchr/testify/require"
 )
 

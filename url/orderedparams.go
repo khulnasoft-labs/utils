@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"strings"
 
-	mapsutil "github.com/khulnasoft-labs/utils/maps"
+	mapsutil "github.com/khulnasoft-lab/utils/maps"
 )
 
 // Only difference between OrderedParams and Params is that

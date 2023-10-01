@@ -4,10 +4,10 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/khulnasoft-labs/fdmax"
-	iputil "github.com/khulnasoft-labs/utils/ip"
-	permissionutil "github.com/khulnasoft-labs/utils/permission"
-	router "github.com/khulnasoft-labs/utils/routing"
+	"github.com/khulnasoft-lab/fdmax"
+	iputil "github.com/khulnasoft-lab/utils/ip"
+	permissionutil "github.com/khulnasoft-lab/utils/permission"
+	router "github.com/khulnasoft-lab/utils/routing"
 )
 
 type EnvironmentInfo struct {

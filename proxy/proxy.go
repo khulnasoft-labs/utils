@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 	"github.com/remeh/sizedwaitgroup"
 )
 

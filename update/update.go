@@ -15,8 +15,8 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"github.com/charmbracelet/glamour"
 	"github.com/minio/selfupdate"
-	"github.com/khulnasoft-labs/gologger"
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	"github.com/khulnasoft-lab/gologger"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 const (
@@ -41,7 +41,7 @@ func GetUpdateToolCallback(toolName, version string) func() {
 }
 
 // GetUpdateToolWithRepoCallback returns a callback function that is similar to GetUpdateToolCallback
-// but it takes repoName as an argument (repoName can be either just repoName ex: `vulscan` or full repo Addr ex: `KhulnaSoft-Labs/vulscan`)
+// but it takes repoName as an argument (repoName can be either just repoName ex: `vulscan` or full repo Addr ex: `khulnasoft-lab/vulscan`)
 func GetUpdateToolFromRepoCallback(toolName, version, repoName string) func() {
 	return func() {
 		if repoName == "" {

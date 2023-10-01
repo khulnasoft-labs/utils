@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/khulnasoft-labs/utils/reader/rawmode"
+	"github.com/khulnasoft-lab/utils/reader/rawmode"
 )
 
 type KeyPressReader struct {

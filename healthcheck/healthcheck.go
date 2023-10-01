@@ -3,8 +3,8 @@ package healthcheck
 import (
 	"path/filepath"
 
-	fileutil "github.com/khulnasoft-labs/utils/file"
-	folderutil "github.com/khulnasoft-labs/utils/folder"
+	fileutil "github.com/khulnasoft-lab/utils/file"
+	folderutil "github.com/khulnasoft-lab/utils/folder"
 )
 
 var (

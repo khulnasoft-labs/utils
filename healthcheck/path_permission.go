@@ -3,7 +3,7 @@ package healthcheck
 import (
 	"errors"
 
-	fileutil "github.com/khulnasoft-labs/utils/file"
+	fileutil "github.com/khulnasoft-lab/utils/file"
 )
 
 type PathPermission struct {

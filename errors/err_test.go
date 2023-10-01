@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	errors "github.com/khulnasoft-labs/utils/errors"
+	errors "github.com/khulnasoft-lab/utils/errors"
 )
 
 func TestErrorEqual(t *testing.T) {

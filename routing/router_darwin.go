@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	sliceutil "github.com/khulnasoft-labs/utils/slice"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	"go.uber.org/multierr"
 )
 

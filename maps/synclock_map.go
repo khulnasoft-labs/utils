@@ -4,7 +4,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 var (

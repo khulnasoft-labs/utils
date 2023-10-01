@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	fileutil "github.com/khulnasoft-labs/utils/file"
+	fileutil "github.com/khulnasoft-lab/utils/file"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

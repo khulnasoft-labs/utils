@@ -1,7 +1,7 @@
 package process
 
 import (
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	ps "github.com/shirou/gopsutil/v3/process"
 )
 

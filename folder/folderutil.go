@@ -8,7 +8,7 @@ import (
 	"runtime"
 	"strings"
 
-	fileutil "github.com/khulnasoft-labs/utils/file"
+	fileutil "github.com/khulnasoft-lab/utils/file"
 )
 
 var (

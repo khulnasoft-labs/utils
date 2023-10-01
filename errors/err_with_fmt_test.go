@@ -3,7 +3,7 @@ package errorutil_test
 import (
 	"testing"
 
-	errors "github.com/khulnasoft-labs/utils/errors"
+	errors "github.com/khulnasoft-lab/utils/errors"
 	"github.com/stretchr/testify/require"
 )
 

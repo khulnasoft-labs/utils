@@ -17,8 +17,8 @@ import (
 
 	"github.com/cheggaaa/pb/v3"
 	"github.com/google/go-github/v30/github"
-	"github.com/khulnasoft-labs/gologger"
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	"github.com/khulnasoft-lab/gologger"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 	"golang.org/x/oauth2"
 )
 

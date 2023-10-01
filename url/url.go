@@ -5,9 +5,9 @@ import (
 	"net/url"
 	"strings"
 
-	errorutil "github.com/khulnasoft-labs/utils/errors"
-	osutils "github.com/khulnasoft-labs/utils/os"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
+	osutils "github.com/khulnasoft-lab/utils/os"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 )
 
 // disables autocorrect related to parsing

@@ -7,9 +7,9 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/google/go-github/v30 v30.1.0
-	github.com/khulnasoft-lab/blackrock v0.0.2
-	github.com/khulnasoft-lab/fdmax v0.0.6
-	github.com/khulnasoft-lab/gologger v1.1.11
+	github.com/khulnasoft-lab/blackrock v0.0.3
+	github.com/khulnasoft-lab/fdmax v0.0.7
+	github.com/khulnasoft-lab/gologger v1.1.12
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/microcosm-cc/bluemonday v1.0.25
 	github.com/miekg/dns v1.1.55
@@ -23,7 +23,7 @@ require (
 	go.uber.org/multierr v1.11.0
 	golang.org/x/exp v0.0.0-20221019170559-20944726eadf
 	golang.org/x/oauth2 v0.10.0
-	golang.org/x/sys v0.10.0
+	golang.org/x/sys v0.12.0
 	golang.org/x/text v0.11.0
 	gopkg.in/yaml.v3 v3.0.1
 )

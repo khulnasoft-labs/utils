@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/khulnasoft-labs/utils/consts"
-	osutil "github.com/khulnasoft-labs/utils/os"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
+	"github.com/khulnasoft-lab/utils/consts"
+	osutil "github.com/khulnasoft-lab/utils/os"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 	"go.uber.org/multierr"
 )
 

@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	errorutil "github.com/khulnasoft-labs/utils/errors"
+	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 const (

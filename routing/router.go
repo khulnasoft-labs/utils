@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/pkg/errors"
-	iputil "github.com/khulnasoft-labs/utils/ip"
+	iputil "github.com/khulnasoft-lab/utils/ip"
 )
 
 type RouteType string

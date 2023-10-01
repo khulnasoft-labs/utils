@@ -5,8 +5,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/khulnasoft-labs/utils/reader"
-	stringsutil "github.com/khulnasoft-labs/utils/strings"
+	"github.com/khulnasoft-lab/utils/reader"
+	stringsutil "github.com/khulnasoft-lab/utils/strings"
 )
 
 func main() {
