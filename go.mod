@@ -1,15 +1,18 @@
 module github.com/khulnasoft-lab/utils
 
-go 1.19
+go 1.20
 
 require (
 	github.com/Masterminds/semver/v3 v3.2.1
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/charmbracelet/glamour v0.6.0
+	github.com/denisbrodbeck/machineid v1.0.1
 	github.com/google/go-github/v30 v30.1.0
+	github.com/hdm/jarm-go v0.0.7
 	github.com/khulnasoft-lab/blackrock v0.0.3
 	github.com/khulnasoft-lab/fdmax v0.0.7
 	github.com/khulnasoft-lab/gologger v1.1.12
+	github.com/kljensen/snowball v0.8.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/microcosm-cc/bluemonday v1.0.25
 	github.com/miekg/dns v1.1.55
@@ -22,9 +25,9 @@ require (
 	github.com/zmap/zcrypto v0.0.0-20220803033029-557f3e4940be
 	go.uber.org/multierr v1.11.0
 	golang.org/x/exp v0.0.0-20221019170559-20944726eadf
-	golang.org/x/oauth2 v0.10.0
+	golang.org/x/oauth2 v0.11.0
 	golang.org/x/sys v0.12.0
-	golang.org/x/text v0.11.0
+	golang.org/x/text v0.12.0
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -76,9 +79,9 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/weppos/publicsuffix-go v0.15.1-0.20220724114530-e087fba66a37 // indirect
 	github.com/zmap/rc2 v0.0.0-20131011165748-24b9757f5521 // indirect
-	golang.org/x/crypto v0.11.0 // indirect
+	golang.org/x/crypto v0.12.0 // indirect
 	golang.org/x/mod v0.8.0 // indirect
-	golang.org/x/net v0.12.0 // indirect
+	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/tools v0.6.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect

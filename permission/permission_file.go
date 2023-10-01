@@ -1,5 +1,3 @@
-//go:build linux || darwin
-
 package permissionutil
 
 import "os"
@@ -45,6 +43,12 @@ const (
 	AllExecute          = UserExecute | GroupExecute | OtherExecute
 	AllReadWrite        = AllRead | AllWrite
 	AllReadWriteExecute = AllReadWrite | AllExecute
+
+	// Default File/Folder Permissions
+	ConfigFolderPermission = UserReadWriteExecute
+	ConfigFilePermission   = UserReadWrite
+	BinaryPermission       = UserRead | UserExecute
+	TempFilePermission     = UserReadWrite
 )
 
 // UpdateFilePerm modifies the permissions of the given file.

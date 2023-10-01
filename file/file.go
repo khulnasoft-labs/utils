@@ -17,8 +17,9 @@ import (
 	"time"
 
 	"github.com/asaskevich/govalidator"
-	"github.com/pkg/errors"
+	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	stringsutil "github.com/khulnasoft-lab/utils/strings"
+	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
@@ -32,6 +33,36 @@ func FileExists(filename string) bool {
 		return false
 	}
 	return !info.IsDir()
+}
+
+// FileExistsIn checks if the file exists in the allowed paths
+func FileExistsIn(file string, allowedPaths ...string) (string, error) {
+	fileAbsPath, err := filepath.Abs(file)
+	if err != nil {
+		return "", err
+	}
+
+	uniqAllowedPaths := sliceutil.Dedupe(allowedPaths)
+
+	for _, allowedPath := range uniqAllowedPaths {
+		allowedAbsPath, err := filepath.Abs(allowedPath)
+		if err != nil {
+			return "", err
+		}
+		// reject any path that for some reason was cleaned up and starts with .
+		if stringsutil.HasPrefixAny(allowedAbsPath, ".") {
+			return "", errors.New("invalid path")
+		}
+
+		allowedDirPath := allowedAbsPath
+		if filepath.Ext(allowedAbsPath) != "" {
+			allowedDirPath = filepath.Dir(allowedAbsPath)
+		}
+		if strings.HasPrefix(fileAbsPath, allowedDirPath) && FileExists(fileAbsPath) {
+			return allowedDirPath, nil
+		}
+	}
+	return "", errors.New("no allowed path found")
 }
 
 // FolderExists checks if the folder exists
