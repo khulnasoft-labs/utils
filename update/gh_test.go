@@ -11,18 +11,18 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-// TestDownloadVulscanRelease tests downloading vulscan release
-func TestDownloadVulscanRelease(t *testing.T) {
+// TestDownloadNucleiRelease tests downloading nuclei release
+func TestDownloadNucleiRelease(t *testing.T) {
 	HideProgressBar = true
-	gh, err := NewghReleaseDownloader("vulscan")
+	gh, err := NewghReleaseDownloader("nuclei")
 	require.Nil(t, err)
 	_, err = gh.GetExecutableFromAsset()
 	require.Nil(t, err)
 }
 
-// TestDownloadVulscanTemplatesFromSource tests downloading vulscan-templates from source
-func TestDownloadVulscanTemplatesFromSource(t *testing.T) {
-	gh, err := NewghReleaseDownloader("vulscan-templates")
+// TestDownloadNucleiTemplatesFromSource tests downloading nuclei-templates from source
+func TestDownloadNucleiTemplatesFromSource(t *testing.T) {
+	gh, err := NewghReleaseDownloader("nuclei-templates")
 	require.Nil(t, err)
 	counter := 0
 	callback := func(path string, fileInfo fs.FileInfo, data io.Reader) error {

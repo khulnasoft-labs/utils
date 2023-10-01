@@ -10,9 +10,9 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/pkg/errors"
 	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	stringsutil "github.com/khulnasoft-lab/utils/strings"
+	"github.com/pkg/errors"
 	"go.uber.org/multierr"
 )
 
