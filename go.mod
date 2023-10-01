@@ -1,4 +1,4 @@
-module github.com/khulnasoft-labs/utils
+module github.com/khulnasoft-lab/utils
 
 go 1.19
 
@@ -7,9 +7,9 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/google/go-github/v30 v30.1.0
-	github.com/khulnasoft-labs/blackrock v0.0.2
-	github.com/khulnasoft-labs/fdmax v0.0.6
-	github.com/khulnasoft-labs/gologger v1.1.11
+	github.com/khulnasoft-lab/blackrock v0.0.2
+	github.com/khulnasoft-lab/fdmax v0.0.6
+	github.com/khulnasoft-lab/gologger v1.1.11
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/microcosm-cc/bluemonday v1.0.25
 	github.com/miekg/dns v1.1.55
