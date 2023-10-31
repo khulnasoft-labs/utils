@@ -17,9 +17,9 @@ import (
 	"time"
 
 	"github.com/asaskevich/govalidator"
+	"github.com/pkg/errors"
 	sliceutil "github.com/khulnasoft-lab/utils/slice"
 	stringsutil "github.com/khulnasoft-lab/utils/strings"
-	"github.com/pkg/errors"
 	"gopkg.in/yaml.v3"
 )
 
