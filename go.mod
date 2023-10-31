@@ -24,7 +24,7 @@ require (
 	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca
 	github.com/shirou/gopsutil/v3 v3.23.7
 	github.com/stretchr/testify v1.8.4
-	github.com/zmap/zcrypto v0.0.0-20220803033029-557f3e4940be
+	github.com/zmap/zcrypto v0.0.0-20231018155041-c1c1128be414
 	go.uber.org/multierr v1.11.0
 	golang.org/x/exp v0.0.0-20221019170559-20944726eadf
 	golang.org/x/oauth2 v0.13.0
@@ -91,8 +91,8 @@ require (
 	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/gorilla/css v1.0.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/weppos/publicsuffix-go v0.15.1-0.20220724114530-e087fba66a37 // indirect
-	github.com/zmap/rc2 v0.0.0-20131011165748-24b9757f5521 // indirect
+	github.com/weppos/publicsuffix-go v0.30.2-0.20230730094716-a20f9abcc222 // indirect
+	github.com/zmap/rc2 v0.0.0-20190804163417-abaa70531248 // indirect
 	golang.org/x/crypto v0.14.0 // indirect
 	golang.org/x/mod v0.8.0 // indirect
 	golang.org/x/net v0.17.0 // indirect
