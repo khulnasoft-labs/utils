@@ -8,10 +8,13 @@ require (
 	github.com/charmbracelet/glamour v0.6.0
 	github.com/denisbrodbeck/machineid v1.0.1
 	github.com/google/go-github/v30 v30.1.0
+	github.com/google/go-github/v56 v56.0.0
 	github.com/hdm/jarm-go v0.0.7
-	github.com/khulnasoft-lab/blackrock v0.0.3
+	github.com/julienschmidt/httprouter v1.3.0
+	github.com/khulnasoft-lab/blackrock v0.0.5
 	github.com/khulnasoft-lab/fdmax v0.0.7
-	github.com/khulnasoft-lab/gologger v1.1.12
+	github.com/khulnasoft-lab/gologger v1.1.13
+	github.com/khulnasoft-lab/hmap v0.0.17
 	github.com/kljensen/snowball v0.8.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/microcosm-cc/bluemonday v1.0.25
@@ -19,10 +22,10 @@ require (
 	github.com/minio/selfupdate v0.6.0
 	github.com/pkg/errors v0.9.1
 	github.com/remeh/sizedwaitgroup v1.0.0
-	github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca
-	github.com/shirou/gopsutil/v3 v3.23.7
+	github.com/saintfish/chardet v0.0.0-20230101081208-5e3ef4b5456d
+	github.com/shirou/gopsutil/v3 v3.23.10
 	github.com/stretchr/testify v1.8.4
-	github.com/zmap/zcrypto v0.0.0-20220803033029-557f3e4940be
+	github.com/zmap/zcrypto v0.0.0-20231018155041-c1c1128be414
 	go.uber.org/multierr v1.11.0
 	golang.org/x/exp v0.0.0-20221019170559-20944726eadf
 	golang.org/x/oauth2 v0.11.0
@@ -33,6 +36,7 @@ require (
 
 require (
 	github.com/VividCortex/ewma v1.2.0 // indirect
+	github.com/akrylysov/pogreb v0.10.1 // indirect
 	github.com/alecthomas/chroma v0.10.0 // indirect
 	github.com/aymanbagabas/go-osc52/v2 v2.0.1 // indirect
 	github.com/dlclark/regexp2 v1.8.1 // indirect
@@ -52,18 +56,29 @@ require (
 	github.com/muesli/reflow v0.3.0 // indirect
 	github.com/muesli/termenv v0.15.1 // indirect
 	github.com/nwaples/rardecode v1.1.3 // indirect
+	github.com/nxadm/tail v1.4.11 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
-	github.com/tklauser/go-sysconf v0.3.11 // indirect
-	github.com/tklauser/numcpus v0.6.0 // indirect
+	github.com/syndtr/goleveldb v1.0.0 // indirect
+	github.com/tidwall/btree v1.4.3 // indirect
+	github.com/tidwall/buntdb v1.3.0 // indirect
+	github.com/tidwall/gjson v1.14.3 // indirect
+	github.com/tidwall/grect v0.1.4 // indirect
+	github.com/tidwall/match v1.1.1 // indirect
+	github.com/tidwall/pretty v1.2.0 // indirect
+	github.com/tidwall/rtred v0.1.2 // indirect
+	github.com/tidwall/tinyqueue v0.1.1 // indirect
+	github.com/tklauser/go-sysconf v0.3.12 // indirect
+	github.com/tklauser/numcpus v0.6.1 // indirect
 	github.com/ulikunitz/xz v0.5.11 // indirect
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	github.com/yuin/goldmark v1.5.4 // indirect
 	github.com/yuin/goldmark-emoji v1.0.1 // indirect
 	github.com/yusufpapurcu/wmi v1.2.3 // indirect
+	go.etcd.io/bbolt v1.3.7 // indirect
 	gopkg.in/djherbis/times.v1 v1.3.0 // indirect
 )
 

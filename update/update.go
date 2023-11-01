@@ -15,9 +15,9 @@ import (
 	"github.com/Masterminds/semver/v3"
 	"github.com/charmbracelet/glamour"
 	"github.com/denisbrodbeck/machineid"
+	"github.com/minio/selfupdate"
 	"github.com/khulnasoft-lab/gologger"
 	errorutil "github.com/khulnasoft-lab/utils/errors"
-	"github.com/minio/selfupdate"
 )
 
 const (
