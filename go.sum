@@ -90,6 +90,8 @@ github.com/khulnasoft-lab/fdmax v0.0.7 h1:E1P7nWBAi7D0gD5Xcaugfqa6oXFTiAYXHJk+qO
 github.com/khulnasoft-lab/fdmax v0.0.7/go.mod h1:bDAkiS2CyCMPHmK4nqGHUCXyFF0LK/pAcN4VOGpzVwg=
 github.com/khulnasoft-lab/gologger v1.1.12 h1:ks7Paf/RcnbvbMkoIIAopkAIDgohQ9tn6Cr/JNvz/Co=
 github.com/khulnasoft-lab/gologger v1.1.12/go.mod h1:AZyjwvwMPR+1uJncgPpU2+UKdSrviPkrl+l9xSLyJnY=
+github.com/khulnasoft-lab/gologger v1.1.13 h1:5HksCw6sHafGdDyy2VTPquYpMsSKX4vsbNf8YdaTT3I=
+github.com/khulnasoft-lab/gologger v1.1.13/go.mod h1:FN+22q/OrX/hDzdIQc4DATKJ7roC7eOszlQRg4FICXs=
 github.com/khulnasoft-lab/hmap v0.0.17 h1:gipTgR6kNqEPbOnjqOHvs2ABur4y158+4rLbPhsqqVk=
 github.com/khulnasoft-lab/hmap v0.0.17/go.mod h1:gQFTlodsy37ynTPIOW15IhGcnOPHRoC0DkFdxjHCgI0=
 github.com/klauspost/compress v1.4.1/go.mod h1:RyIbtBH6LamlWaDj8nUwkbUhJ87Yi3uG0guNDohfE1A=
