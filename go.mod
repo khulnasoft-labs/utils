@@ -13,7 +13,7 @@ require (
 	github.com/julienschmidt/httprouter v1.3.0
 	github.com/khulnasoft-lab/blackrock v0.0.5
 	github.com/khulnasoft-lab/fdmax v0.0.7
-	github.com/khulnasoft-lab/gologger v1.1.12
+	github.com/khulnasoft-lab/gologger v1.1.13
 	github.com/khulnasoft-lab/hmap v0.0.17
 	github.com/kljensen/snowball v0.8.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
