@@ -1,7 +1,6 @@
 Package assert
 ==============
 
-[![Build Status](https://travis-ci.org/khulnasoft-lab/utils/assert.svg?branch=master)](https://travis-ci.org/khulnasoft-lab/utils/assert)
 [![GoDoc](https://godoc.org/github.com/khulnasoft-lab/utils/assert?status.svg)](https://godoc.org/gopkg.in/khulnasoft-lab/utils/assert.v1)
 
 Package assert is a Basic Assertion library used along side native go testing
