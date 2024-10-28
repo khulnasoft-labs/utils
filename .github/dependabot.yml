@@ -16,7 +16,7 @@ updates:
       prefix: "chore"
       include: "scope"
     allow:
-      - dependency-name: "github.com/khulnasoft-lab/*"
+      - dependency-name: "github.com/khulnasoft/*"
 
 #  # Maintain dependencies for docker
 #  - package-ecosystem: "docker"
