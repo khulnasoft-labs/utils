@@ -1,8 +1,12 @@
 name: 🔨 Build Test
 
 on:
-  pull_request:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
 
 jobs:
   build:
@@ -10,6 +14,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        go-version: [1.22.x,1.21.x,1.20.x,1.19.x,1.18.x,1.17.x]
         os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - name: Set up Go
@@ -21,7 +26,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Test
-        run: go test ./...
+        run: go test -race -cover ./...
 
       - name: Race Condition Tests
         if: ${{ matrix.os != 'windows-latest' }} # false positives in windows
