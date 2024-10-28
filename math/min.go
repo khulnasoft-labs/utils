@@ -11,7 +11,7 @@ import (
 
 // Min returns the smaller value.
 //
-// NOTE: this function does not check for difference in floats of 0/zero vs -0/negative zero using Signbit.
+// NOTE: this function does not distinguish between 0.0 and -0.0 floating point values. // For example, Min(0.0, -0.0) and Min(-0.0, 0.0) will both return -0.0 without // checking IEEE 754 sign bits.
 func Min[N constraintsext.Number](x, y N) N {
 	// special case for float
 	// IEEE 754 says that only NaNs satisfy f != f.
