@@ -1,208 +1,122 @@
 package batcher
 
 import (
-	"sync/atomic"
+	"crypto/rand"
+	"testing"
 	"time"
 
-	reflectutil "github.com/khulnasoft-lab/utils/reflect"
+	"github.com/stretchr/testify/require"
 )
 
-// FlushCallback is the callback function that will be called when the batcher is full or the flush interval is reached
-type FlushCallback[T any] func([]T)
-
-// Batcher is a batcher for any type of data
-type Batcher[T any] struct {
-	maxCapacity int
-	maxSize     int32
-
-	currentSize atomic.Int32
-
-	flushInterval *time.Duration
-	flushCallback FlushCallback[T]
-
-	incomingData chan T
-	full         chan bool
-	mustExit     chan bool
-	done         chan bool
-}
-
-// BatcherOption is the option for the batcher
-type BatcherOption[T any] func(*Batcher[T])
-
-// WithMaxCapacity sets the max capacity of the batcher
-func WithMaxCapacity[T any](maxCapacity int) BatcherOption[T] {
-	return func(b *Batcher[T]) {
-		b.maxCapacity = maxCapacity
-	}
-}
-
-// WithMaxSize sets the max size of the batcher
-func WithMaxSize[T any](maxSize int32) BatcherOption[T] {
-	return func(b *Batcher[T]) {
-		b.maxSize = maxSize
-	}
-}
-
-// WithFlushInterval sets the optional flush interval of the batcher
-func WithFlushInterval[T any](flushInterval time.Duration) BatcherOption[T] {
-	return func(b *Batcher[T]) {
-		b.flushInterval = &flushInterval
-	}
-}
-
-// WithFlushCallback sets the flush callback of the batcher
-func WithFlushCallback[T any](fn FlushCallback[T]) BatcherOption[T] {
-	return func(b *Batcher[T]) {
-		b.flushCallback = fn
-	}
-}
-
-// New creates a new batcher
-func New[T any](opts ...BatcherOption[T]) *Batcher[T] {
-	batcher := &Batcher[T]{
-		full:     make(chan bool),
-		mustExit: make(chan bool, 1),
-		done:     make(chan bool, 1),
-	}
-	for _, opt := range opts {
-		opt(batcher)
-	}
-	if batcher.maxSize > 0 {
-		batcher.currentSize = atomic.Int32{}
-	}
-	batcher.incomingData = make(chan T, batcher.maxCapacity)
-	if batcher.flushCallback == nil {
-		panic("batcher: flush callback is required")
-	}
-	if batcher.maxCapacity <= 0 {
-		panic("batcher: max capacity must be greater than 0")
-	}
-	return batcher
-}
-
-// Append appends data to the batcher
-func (b *Batcher[T]) Append(d ...T) {
-	for _, item := range d {
-		var sizeofItem int
-
-		if b.maxSize > 0 {
-			sizeofItem = reflectutil.SizeOf(item)
-			currentSize := b.currentSize.Load()
-
-			if currentSize+int32(sizeofItem) > int32(b.maxSize) {
-				b.full <- true
-				b.incomingData <- item
-				b.currentSize.Add(int32(sizeofItem))
-				continue
-			}
-		}
-
-		if !b.put(item) {
-			// will wait until space available
-			b.full <- true
-			b.incomingData <- item
-		}
-		if b.maxSize > 0 {
-			b.currentSize.Add(int32(sizeofItem))
+func TestBatcherStandard(t *testing.T) {
+	var (
+		batchSize        = 100
+		wanted           = 100000
+		minWantedBatches = wanted / batchSize
+		got              int
+		gotBatches       int
+	)
+	callback := func(t []int) {
+		gotBatches++
+		for range t {
+			got++
 		}
 	}
-}
+	bat := New[int](
+		WithMaxCapacity[int](batchSize),
+		WithFlushCallback[int](callback),
+	)
 
-func (b *Batcher[T]) put(d T) bool {
-	// try to append the data
-	select {
-	case b.incomingData <- d:
-		return true
-	default:
-		// channel is full
-		return false
+	bat.Run()
+
+	for i := 0; i < wanted; i++ {
+		bat.Append(i)
 	}
+
+	bat.Stop()
+
+	bat.WaitDone()
+
+	require.Equal(t, wanted, got)
+	require.True(t, minWantedBatches <= gotBatches)
 }
 
-func (b *Batcher[T]) run() {
-	// consume all items in the queue
-	defer func() {
-		b.doCallback()
-		close(b.done)
-	}()
-
-	var timer *time.Timer
-	var flushInterval time.Duration
-	if b.flushInterval != nil {
-		flushInterval = *b.flushInterval
-		timer = time.NewTimer(flushInterval)
-		b.runWithTimer(timer, flushInterval)
-		return
-	}
-	b.runWithoutTimer()
-}
-
-// runWithTimer runs the batcher with timer
-func (b *Batcher[T]) runWithTimer(timer *time.Timer, flushInterval time.Duration) {
-	for {
-		select {
-		case <-timer.C:
-			b.doCallback()
-			timer.Reset(flushInterval)
-		case <-b.full:
-			if !timer.Stop() {
-				<-timer.C
-			}
-			b.doCallback()
-			timer.Reset(flushInterval)
-		case <-b.mustExit:
-			if !timer.Stop() {
-				<-timer.C
-			}
-			return
+func TestBatcherWithInterval(t *testing.T) {
+	var (
+		batchSize        = 200
+		wanted           = 1000
+		minWantedBatches = 10
+		got              int
+		gotBatches       int
+	)
+	callback := func(t []int) {
+		gotBatches++
+		for range t {
+			got++
 		}
 	}
+	bat := New[int](
+		WithMaxCapacity[int](batchSize),
+		WithFlushCallback[int](callback),
+		WithFlushInterval[int](10*time.Millisecond),
+	)
+
+	bat.Run()
+
+	for i := 0; i < wanted; i++ {
+		time.Sleep(2 * time.Millisecond)
+		bat.Append(i)
+	}
+
+	bat.Stop()
+
+	bat.WaitDone()
+
+	require.Equal(t, wanted, got)
+	require.True(t, minWantedBatches <= gotBatches)
 }
 
-// runWithoutTimer runs the batcher without timer
-func (b *Batcher[T]) runWithoutTimer() {
-	for {
-		select {
-		case <-b.full:
-			b.doCallback()
-		case <-b.mustExit:
-			return
+type exampleBatcherStruct struct {
+	Value []byte
+}
+
+func TestBatcherWithSizeLimit(t *testing.T) {
+	var (
+		batchSize  = 100
+		maxSize    = 1000
+		wanted     = 10
+		gotBatches int
+	)
+	var failedIteration bool
+
+	callback := func(ta []exampleBatcherStruct) {
+		gotBatches++
+
+		totalValueSize := 0
+		for _, t := range ta {
+			totalValueSize += len(t.Value)
+		}
+		if totalValueSize > maxSize {
+			failedIteration = true
 		}
 	}
-}
+	bat := New[exampleBatcherStruct](
+		WithMaxCapacity[exampleBatcherStruct](batchSize),
+		WithMaxSize[exampleBatcherStruct](int32(maxSize)),
+		WithFlushCallback[exampleBatcherStruct](callback),
+	)
 
-func (b *Batcher[T]) doCallback() {
-	n := len(b.incomingData)
-	if n == 0 {
-		return
+	bat.Run()
+
+	for i := 0; i < wanted; i++ {
+		randData := make([]byte, 200)
+		_, _ = rand.Read(randData)
+		bat.Append(exampleBatcherStruct{Value: randData})
 	}
-	items := make([]T, n)
 
-	var k int
-	for item := range b.incomingData {
-		items[k] = item
-		k++
-		if b.maxSize > 0 {
-			b.currentSize.Add(-int32(reflectutil.SizeOf(item)))
-		}
-		if k >= n {
-			break
-		}
-	}
-	b.flushCallback(items)
-}
+	bat.Stop()
 
-// Run starts the batcher
-func (b *Batcher[T]) Run() {
-	go b.run()
-}
+	bat.WaitDone()
 
-// Stop stops the batcher
-func (b *Batcher[T]) Stop() {
-	b.mustExit <- true
-}
-
-// WaitDone waits until the batcher is done
-func (b *Batcher[T]) WaitDone() {
-	<-b.done
+	require.False(t, failedIteration)
 }
