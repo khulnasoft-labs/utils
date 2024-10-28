@@ -14,20 +14,22 @@ import (
 
 	"github.com/Masterminds/semver/v3"
 	"github.com/charmbracelet/glamour"
-	"github.com/denisbrodbeck/machineid"
+	styles "github.com/charmbracelet/glamour/styles"
 	"github.com/minio/selfupdate"
 	"github.com/khulnasoft-lab/gologger"
+	"github.com/khulnasoft-lab/machineid"
 	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 const (
-	Organization        = "khulnasoft-lab"
-	UpdateCheckEndpoint = "https://api.pdtm.sh/api/v1/tools/%v"
+	Organization        = "projectdiscovery"
+	UpdateCheckEndpoint = "https://api.khulnasoft.com/api/v1/tools/%v"
 )
 
 var (
 	// By default when tool is updated release notes of latest version are printed
 	HideReleaseNotes      = false
+	NoColorReleaseNotes   = false
 	HideProgressBar       = false
 	VersionCheckTimeout   = time.Duration(5) * time.Second
 	DownloadUpdateTimeout = time.Duration(30) * time.Second
@@ -42,7 +44,7 @@ func GetUpdateToolCallback(toolName, version string) func() {
 }
 
 // GetUpdateToolWithRepoCallback returns a callback function that is similar to GetUpdateToolCallback
-// but it takes repoName as an argument (repoName can be either just repoName ex: `nuclei` or full repo Addr ex: `khulnasoft-lab/nuclei`)
+// but it takes repoName as an argument (repoName can be either just repoName ex: `nuclei` or full repo Addr ex: `khulnasoft/nuclei`)
 func GetUpdateToolFromRepoCallback(toolName, version, repoName string) func() {
 	return func() {
 		if repoName == "" {
@@ -90,8 +92,12 @@ func GetUpdateToolFromRepoCallback(toolName, version, repoName string) func() {
 
 		if !HideReleaseNotes {
 			output := gh.Latest.GetBody()
-			// adjust colors for both dark / light terminal themes
-			r, err := glamour.NewTermRenderer(glamour.WithAutoStyle())
+
+			style := glamour.WithAutoStyle()
+			if NoColorReleaseNotes {
+				style = glamour.WithStyles(styles.ASCIIStyleConfig)
+			}
+			r, err := glamour.NewTermRenderer(style)
 			if err != nil {
 				gologger.Error().Msgf("markdown rendering not supported: %v", err)
 			}
@@ -111,7 +117,7 @@ func GetUpdateToolFromRepoCallback(toolName, version, repoName string) func() {
 // if repoName is empty then tool name is considered as repoName
 func GetToolVersionCallback(toolName, version string) func() (string, error) {
 	return func() (string, error) {
-		updateURL := fmt.Sprintf(UpdateCheckEndpoint, toolName) + "?" + GetpdtmParams(version)
+		updateURL := fmt.Sprintf(UpdateCheckEndpoint, toolName) + "?" + GetkhulnasoftParams(version)
 		if DefaultHttpClient == nil {
 			// not needed but as a precaution to avoid nil panics
 			DefaultHttpClient = http.DefaultClient
@@ -137,30 +143,38 @@ func GetToolVersionCallback(toolName, version string) func() (string, error) {
 		}
 		if toolDetails.Version == "" {
 			msg := fmt.Sprintf("something went wrong, expected version string but got empty string for GET `%v` response `%v`", updateURL, string(body))
-			if err == nil {
-				return "", errorutil.New(msg)
-			}
-			return "", errorutil.NewWithErr(err).Msgf(msg)
+			return "", errorutil.New("%s", msg)
 		}
 		return toolDetails.Version, nil
 	}
 }
 
-// GetpdtmParams returns encoded query parameters sent to update check endpoint
-func GetpdtmParams(version string) string {
+// GetkhulnasoftParams returns encoded query parameters sent to update check endpoint
+func GetkhulnasoftParams(version string) string {
 	params := &url.Values{}
-	params.Add("os", runtime.GOOS)
+	os := runtime.GOOS
+	if runtime.GOOS == "linux" {
+		// be more specific
+		os = GetOSVendor()
+	}
+	params.Add("os", os)
 	params.Add("arch", runtime.GOARCH)
 	params.Add("go_version", runtime.Version())
 	params.Add("v", version)
-	params.Add("machine_id", buildMachineId())
+	params.Add("machine_id", GetMachineID()) // for rate limiting
+	params.Add("utm_source", getUtmSource())
 	return params.Encode()
 }
 
-func buildMachineId() string {
-	machineId, err := machineid.ProtectedID("pdtm")
+// GetMachineID return a unique identifier that is unique to the machine
+// it is a sha256 hashed value with khulnasoft as salt
+func GetMachineID() string {
+	machineId, err := machineid.ProtectedID("khulnasoft")
 	if err != nil {
-		return "unknown"
+		return getCustomMID()
+	}
+	if machineId == "" {
+		return getCustomMID()
 	}
 	return machineId
 }
