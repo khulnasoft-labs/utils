@@ -65,6 +65,56 @@ func (o Option[T]) Value() (driver.Value, error) {
 
 // Scan implements the sql.Scanner interface.
 func (o *Option[T]) Scan(value any) error {
+    if value == nil {
+        *o = None[T]()
+        return nil
+    }
+
+    val := reflect.ValueOf(&o.value)
+    if val.Type().Implements(scanType) {
+        return o.scanWithScanner(val, value)
+    }
+
+    val = val.Elem()
+    switch val.Kind() {
+    case reflect.String, reflect.Bool, reflect.Uint8:
+        return o.scanBasicType(val, value)
+    case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+        return o.scanIntegerType(val, value)
+    case reflect.Float32, reflect.Float64:
+        return o.scanFloatType(val, value)
+    case reflect.Struct:
+        if val.CanConvert(timeType) {
+            return o.scanTimeType(val, value)
+        }
+        fallthrough
+    default:
+        return o.scanComplexType(val, value)
+    }
+}
+
+// Example helper method:
+func (o *Option[T]) scanIntegerType(val reflect.Value, value any) error {
+    var v sql.NullInt64
+    if err := v.Scan(value); err != nil {
+        return err
+    }
+
+    // Handle range checks based on type
+    switch val.Kind() {
+    case reflect.Int:
+        if v.Int64 > math.MaxInt || v.Int64 < math.MinInt {
+            return fmt.Errorf("value %d out of range for int", v.Int64)
+        }
+    case reflect.Int8:
+        if v.Int64 > math.MaxInt8 || v.Int64 < math.MinInt8 {
+            return fmt.Errorf("value %d out of range for int8", v.Int64)
+        }
+    }
+
+    *o = Some(reflect.ValueOf(v.Int64).Convert(val.Type()).Interface().(T))
+    return nil
+}
 
 	if value == nil {
 		*o = None[T]()
