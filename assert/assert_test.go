@@ -16,7 +16,7 @@ import (
 // go test -coverprofile cover.out && go tool cover -html=cover.out -o cover.html
 //
 
-func MyCustomErrorHandler(t testing.TB, errs map[string]string, key, expected string) {
+func MyCustomErrorHandler(t *testing.T, errs map[string]string, key, expected string) {
 	val, ok := errs[key]
 	EqualSkip(t, 2, ok, true)
 	NotEqualSkip(t, 2, val, nil)
@@ -29,7 +29,7 @@ func TestRegexMatchAndNotMatch(t *testing.T) {
 	MatchRegex(t, "github.com/khulnasoft-lab/utils/assert", goodRegex)
 	MatchRegex(t, "/vendor/github.com/khulnasoft-lab/utils/assert", goodRegex)
 
-	NotMatchRegex(t, "/vendor/github.comkhulnasoft-lab/utils/test", goodRegex)
+	NotMatchRegex(t, "/vendor/github.com/khulnasoft-lab/utils/test", goodRegex)
 }
 
 func TestBasicAllGood(t *testing.T) {
