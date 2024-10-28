@@ -115,6 +115,8 @@ func (o *Option[T]) scanIntegerType(val reflect.Value, value any) error {
     *o = Some(reflect.ValueOf(v.Int64).Convert(val.Type()).Interface().(T))
     return nil
 }
+// New function to wrap the remaining code
+func (o *Option[T]) ScanValue(value any) error {
 
 	if value == nil {
 		*o = None[T]()
