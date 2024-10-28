@@ -19,6 +19,7 @@ require (
 	github.com/khulnasoft-lab/fdmax v0.0.7
 	github.com/khulnasoft-lab/gologger v1.1.13
 	github.com/khulnasoft-lab/hmap v0.0.17
+	github.com/khulnasoft-lab/machineid v0.0.0-20241028154619-d649cc022c2a
 	github.com/khulnasoft-lab/retryablehttp-go v1.0.21
 	github.com/klauspost/compress v1.17.4
 	github.com/kljensen/snowball v0.8.0
@@ -28,7 +29,6 @@ require (
 	github.com/miekg/dns v1.1.56
 	github.com/minio/selfupdate v0.6.1-0.20230907112617-f11e74f84ca7
 	github.com/pkg/errors v0.9.1
-	github.com/projectdiscovery/machineid v0.0.0-20240226150047-2e2c51e35983
 	github.com/remeh/sizedwaitgroup v1.0.0
 	github.com/saintfish/chardet v0.0.0-20230101081208-5e3ef4b5456d
 	github.com/shirou/gopsutil v3.21.11+incompatible
@@ -40,7 +40,7 @@ require (
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d
 	golang.org/x/oauth2 v0.11.0
 	golang.org/x/sync v0.8.0
-	golang.org/x/sys v0.25.0
+	golang.org/x/sys v0.26.0
 	golang.org/x/text v0.18.0
 	gopkg.in/yaml.v3 v3.0.1
 )
