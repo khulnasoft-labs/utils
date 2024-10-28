@@ -4,8 +4,9 @@ export SHELLOPTS := errexit
 GOPATH ?= $(shell go env GOPATH)
 BIN_DIR := $(GOPATH)/bin
 GOLANGCI_LINT := $(BIN_DIR)/golangci-lint
+GOCMD=GO111MODULE=on go
 
-.PHONY: lint lintfix test fuzz
+.PHONY: lint lintfix test fuzz bench
 
 $(GOLANGCI_LINT):
 	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(BIN_DIR) v1.54.2
@@ -17,7 +18,10 @@ lintfix: $(GOLANGCI_LINT)
 	@$(GOLANGCI_LINT) run --fix --timeout 5m
 
 test:
-	go test ./...
+	$(GOCMD) test -cover -race ./...
+
+bench:
+	$(GOCMD) test -run=NONE -bench=. -benchmem  ./...
 
 fuzz:
-	go test -fuzztime=10s -fuzz=FuzzSafeOpen -run "FuzzSafeOpen" ./file/...
+	$(GOCMD) test -fuzztime=10s -fuzz=FuzzSafeOpen -run "FuzzSafeOpen" ./file/...

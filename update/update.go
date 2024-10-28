@@ -17,13 +17,13 @@ import (
 	styles "github.com/charmbracelet/glamour/styles"
 	"github.com/minio/selfupdate"
 	"github.com/khulnasoft-lab/gologger"
-	"github.com/projectdiscovery/machineid"
+	"github.com/khulnasoft-lab/machineid"
 	errorutil "github.com/khulnasoft-lab/utils/errors"
 )
 
 const (
 	Organization        = "projectdiscovery"
-	UpdateCheckEndpoint = "https://api.pdtm.sh/api/v1/tools/%v"
+	UpdateCheckEndpoint = "https://api.khulnasoft.com/api/v1/tools/%v"
 )
 
 var (
@@ -117,7 +117,7 @@ func GetUpdateToolFromRepoCallback(toolName, version, repoName string) func() {
 // if repoName is empty then tool name is considered as repoName
 func GetToolVersionCallback(toolName, version string) func() (string, error) {
 	return func() (string, error) {
-		updateURL := fmt.Sprintf(UpdateCheckEndpoint, toolName) + "?" + GetpdtmParams(version)
+		updateURL := fmt.Sprintf(UpdateCheckEndpoint, toolName) + "?" + GetkhulnasoftParams(version)
 		if DefaultHttpClient == nil {
 			// not needed but as a precaution to avoid nil panics
 			DefaultHttpClient = http.DefaultClient
@@ -149,8 +149,8 @@ func GetToolVersionCallback(toolName, version string) func() (string, error) {
 	}
 }
 
-// GetpdtmParams returns encoded query parameters sent to update check endpoint
-func GetpdtmParams(version string) string {
+// GetkhulnasoftParams returns encoded query parameters sent to update check endpoint
+func GetkhulnasoftParams(version string) string {
 	params := &url.Values{}
 	os := runtime.GOOS
 	if runtime.GOOS == "linux" {
@@ -167,9 +167,9 @@ func GetpdtmParams(version string) string {
 }
 
 // GetMachineID return a unique identifier that is unique to the machine
-// it is a sha256 hashed value with pdtm as salt
+// it is a sha256 hashed value with khulnasoft as salt
 func GetMachineID() string {
-	machineId, err := machineid.ProtectedID("pdtm")
+	machineId, err := machineid.ProtectedID("khulnasoft")
 	if err != nil {
 		return getCustomMID()
 	}
