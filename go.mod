@@ -1,6 +1,7 @@
 module github.com/khulnasoft-lab/utils
 
 go 1.21
+toolchain go1.22.5
 
 require (
 	github.com/Masterminds/semver/v3 v3.2.1
@@ -37,7 +38,7 @@ require (
 	github.com/tidwall/gjson v1.14.3
 	github.com/zmap/zcrypto v0.0.0-20231018155041-c1c1128be414
 	go.uber.org/multierr v1.11.0
-	golang.org/x/exp v0.0.0-20231006140011-7918f672742d
+	golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842
 	golang.org/x/oauth2 v0.11.0
 	golang.org/x/sync v0.8.0
 	golang.org/x/sys v0.26.0
@@ -79,7 +80,7 @@ require (
 	github.com/nwaples/rardecode v1.1.3 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
-	github.com/quic-go/quic-go v0.37.4 // indirect
+	github.com/quic-go/quic-go v0.48.2 // indirect
 	github.com/refraction-networking/utls v1.5.4 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/shoenig/go-m1cpu v0.1.6 // indirect
