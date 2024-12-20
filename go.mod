@@ -8,9 +8,11 @@ require (
 	github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2
 	github.com/cespare/xxhash v1.1.0
 	github.com/charmbracelet/glamour v0.8.0
+	github.com/coreos/go-oidc/v3 v3.11.0
 	github.com/docker/go-units v0.5.0
 	github.com/dsnet/compress v0.0.2-0.20210315054119-f66993602bf5
 	github.com/fortytw2/leaktest v1.3.0
+	github.com/go-jose/go-jose/v3 v3.0.3
 	github.com/google/go-github/v30 v30.1.0
 	github.com/google/uuid v1.3.1
 	github.com/hdm/jarm-go v0.0.7
@@ -21,7 +23,7 @@ require (
 	github.com/khulnasoft-lab/hmap v0.0.17
 	github.com/khulnasoft-lab/machineid v0.0.0-20241028154619-d649cc022c2a
 	github.com/khulnasoft-lab/retryablehttp-go v1.0.21
-	github.com/klauspost/compress v1.17.4
+	github.com/klauspost/compress v1.17.11
 	github.com/kljensen/snowball v0.8.0
 	github.com/logrusorgru/aurora v2.0.3+incompatible
 	github.com/mattn/go-isatty v0.0.20
@@ -38,7 +40,7 @@ require (
 	github.com/zmap/zcrypto v0.0.0-20231018155041-c1c1128be414
 	go.uber.org/multierr v1.11.0
 	golang.org/x/exp v0.0.0-20231006140011-7918f672742d
-	golang.org/x/oauth2 v0.11.0
+	golang.org/x/oauth2 v0.21.0
 	golang.org/x/sync v0.8.0
 	golang.org/x/sys v0.26.0
 	golang.org/x/text v0.18.0
@@ -61,6 +63,7 @@ require (
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/gaukas/godicttls v0.0.4 // indirect
+	github.com/go-jose/go-jose/v4 v4.0.2 // indirect
 	github.com/go-ole/go-ole v1.2.6 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
